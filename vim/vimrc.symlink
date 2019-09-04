@@ -1,4 +1,4 @@
-call pathogen#infect()
+execute pathogen#infect()
 
 set nocompatible              " required
 filetype off                  " required
@@ -44,9 +44,6 @@ nmap <silent> <leader>s :set nolist!<CR>
 set visualbell
 
 set clipboard=unnamed
-
-"call pathogen#infect()
-"call pathogen#helptags()
 
 " tmux help?
 map <Esc>[B <Down>
