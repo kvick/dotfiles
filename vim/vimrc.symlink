@@ -1,4 +1,247 @@
-syntax on
+call pathogen#infect()
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+set nocompatible              " required
+filetype off                  " required
+
+set background=dark
+colorscheme Monokai
+
+set ruler               " show the cursor position
+set hlsearch            " highlight the last searched term
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set tw=100 sta et sts=4 ai
+
+set expandtab
+syntax on               " syntax highlighting
+"filetype on      " use the file type plugins
+filetype plugin on      " use the file type plugins
+filetype plugin indent on
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+let mapleader = ","
+
+runtime macros/matchit.vim
+set hidden
+set wildmode=list:longest
+
+set ignorecase 
+set smartcase
+set scrolloff=3
+
+set hlsearch
+set incsearch
+nmap <silent> <leader>n :silent :nohlsearch<CR>
+" Press <CR> in Command mode to disable highlighted results
+nnoremap <CR> :noh<CR><CR>
+
+nmap <silent> <leader>s :set nolist!<CR>
+
+set visualbell
+
+set clipboard=unnamed
+
+"call pathogen#infect()
+"call pathogen#helptags()
+
+" tmux help?
+map <Esc>[B <Down>
+
+" TaskList
+" map <leader>td <Plug>TaskList
+
+nnoremap <Tab-Right> gt
+nnoremap <Tab-Left> gT
+
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Gundo
+" map <leader>g :GundoToggle<CR>
+
+" PEP8
+let g:pep8_map='<leader>8'
+
+" Tab Completion
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+
+set completeopt=menuone,longest,preview
+
+" Refactoring and Go to definition
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+
+" Searching
+nmap <leader>a <Esc>:Ack!
+
+"git status
+"%{fugitive#statusline()}
+
+" MiniBuf
+" let g:miniBufExplMapCTabSwitchBufs = 1
+" Switch to alternate file
+" set bufhidden
+map <S-l> :bnext<cr>
+map <S-h> :bprevious<cr>
+"" Show the buffer number in the status line.
+set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+" ACK
+set grepprg=ack
+set grepformat=%f:%l:%m
+
+" tmuxify
+let g:tmuxify_pane_split = '-v'
+let g:tmuxify_pane_size = '20'
+let g:tmuxify_map_prefix = '<leader>m'
+let g:tmuxify_run = {}
+
+" gradle
+au BufNewFile,BufRead *.gradle setf groovy
+
+" code folding
+:setlocal foldmethod=marker foldmarker={,} 
+:setlocal fillchars=fold:\  foldtext=getline(v:foldstart)
+" with at least two spaces after the backslash 
+
+" trying to get the Dispatch plugin to run gradle
+"autocmd FileType gradle let b:dispatch = 'gradleb %'
+"autocmd BufRead set makeprg=gradleb\ %
+
+" vim-go
+let g:go_disable_autoinstall = 0
+let g:go_fmt_command = "goimports"
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+"autocmd FileType go nmap <leader>b  <Plug>(go-build)
+"autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+" Dash documentation and snippet tool
+:nmap <silent> <leader>d <Plug>DashSearch
+let g:dash_activate = 1
+
+" Gdiff
+set diffopt+=vertical
+
+" silversearcher via homebrew 'ag' and ack.vim plugin
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+nmap <leader>N ggi# <C-R>=strftime("%Y-%m-%d - %A")<CR><CR><CR>
+
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+"define BadWhitespace before using in a match
+highlight BadWhitespace ctermbg=red guibg=darkred
+
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Python PEP8 indentation
+" 2012-10-31 turning vim into a modern python ide
+set foldmethod=indent
+set foldlevel=99
+
+au BufNewFile,BufRead *.py
+            \ set tabstop=4 |
+            \ set softtabstop=4 |
+            \ set shiftwidth=4 |
+            \ set textwidth=79 |
+            \ set expandtab |
+            \ set autoindent |
+            \ set fileformat=unix
+
+let python_highlight_all=1
+
+" don't store options when saving sessions
+set ssop-=options    " do not store global and local values in a session
+set ssop-=folds      " do not store folds
+
+" ag silversearcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" yankring
+nnoremap <silent> <F11> :YRShow<CR>
+
+" vim-notes
+:let g:notes_directories = ['~/Dropbox/Notes']
+
+" Map ,ns in visual mode to start new note with selected text as title.
+vmap <Leader>ns :NoteFromSelectedText<CR>
+
+" damien conway OsCon 2013
+" subtle highlight of the # column
+call matchadd('ColorColumn', '\%81v', 80)
+set listchars=tab:>~,trail:·
+set list
+
+set incsearch       "Lookahead as search pattern is specified
+set ignorecase      "Ignore case in all searches...
+set smartcase       "...unless uppercase letters used
+set hlsearch        "Highlight all matches
+highlight clear Search
+highlight       Search    ctermfg=White  ctermbg=Black  cterm=bold
+highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_python_exec = "/usr/local/bin/python3"
+let g:syntastic_python_checkers = ['flake8', 'pylint', 'python']
+let g:syntastic_python_pylint_exec = '/usr/local/bin/pylint'
+let g:syntastic_python_pylint_args = ['--help-msg', 'pylint']
+let g:syntastic_python_flake8_exec = 'python3'
+let g:syntastic_python_flake8_args = ['-m', 'flake8']
+
+" === Ben Orenstein leaders
+vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+
+" Quickfix management
+map <Space><Space> :ccl<cr>
+
+set backupdir=~/.tmp
+set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+
+" Use Silver Searcher instead of grep
+set grepprg=ag
+
+" Make CtrlP use ag for listing the files. Way faster and no useless files.
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_use_caching = 0

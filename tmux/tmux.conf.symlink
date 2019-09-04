@@ -1,0 +1,137 @@
+# Change the prefix key (screen friendly).
+set-option -g prefix C-a
+unbind-key C-b
+bind-key C-a send-prefix
+
+# Default global options.
+set-option -g bell-action none
+set-option -g default-terminal "screen-256color"
+set -g mouse on
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+bind -n WheelDownPane select-pane -t= \; send-keys -M
+set-option -g status-bg green
+set-option -g status-keys vi
+set-option -g status-right-length 60
+
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+
+# Setup 'v' to begin selection as in Vim
+unbind-key -T copy-mode-vi v 
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+unbind-key -T copy-mode-vi Enter 
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "/usr/local/bin/reattach-to-user-namespace /usr/bin/pbcopy"
+
+# Start window numbering at 1
+set -g base-index 1
+
+# Allows for faster key repetition
+set -s escape-time 0
+
+# Default global window options
+set-window-option -g mode-keys vi
+
+# bind keys to navigate splits ala vi
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# change split window mappings
+unbind %
+bind v split-window -h -c "#{pane_current_path}"
+bind s split-window -v -c "#{pane_current_path}"
+
+# C-a C-a will switch to last window
+#bind-key C-a last-window
+
+# Keys to switch session.
+bind-key q switchc -t0
+bind-key w switchc -t1
+bind-key e switchc -t2
+
+# Other key bindings.
+bind-key i choose-window
+
+bind-key m setw monitor-activity
+
+bind-key y setw force-width 81
+bind-key u setw force-width 0
+
+bind-key D detach \; lock
+bind-key N neww \; splitw -d
+
+# set vi copy/paste like commands
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+
+# statusbar --------------------------------------------------------------
+
+# Show messages and notifications for 2 seconds.
+set-option -g display-time 2000
+
+# Refresh the status bar every 10 seconds.
+set-option -g status-interval 10000
+
+# The status bar itself.
+set -g status-left "#h:[#S]"
+set -g status-left-length 50
+#set -g status-right-length 50
+set -g status-right "♫ #{spotify_status} #{spotify_artist}: #{spotify_track} | %a %h-%d %H:%M "
+setw -g window-status-current-format "|#I:#W|"
+
+# default statusbar colors
+set-option -g status-fg white
+set-option -g status-bg default
+set-option -g status-attr default
+
+# default window title colors
+set-window-option -g window-status-fg cyan
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg white
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bright
+
+# command/message line colors
+set-option -g message-fg white
+set-option -g message-bg black
+set-option -g message-attr bright
+
+# Automatically set window title
+set-window-option -g automatic-rename off
+
+# force a reload of the config file
+unbind r
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+bind H resize-pane -L 5 
+bind J resize-pane -D 5 
+bind K resize-pane -U 5 
+bind L resize-pane -R 5
+
+set -g history-limit 32768
+
+bind-key P command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -32768 ; save-buffer %1 ; delete-buffer'
+#
+set-window-option -g xterm-keys on
+
+set-option -g default-command "/usr/local/bin/reattach-to-user-namespace -l zsh"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'Morantron/tmux-fingers'
+set -g @plugin 'robhurring/tmux-spotify'
+
+run-shell ~/.tmux/plugins/tmux-spotify/spotify.tmux
+run '~/.tmux/plugins/tpm/tpm'
+
+# custom key bindings
+bind -n F6 setw synchronize-panes
+
