@@ -221,12 +221,6 @@ let g:syntastic_python_flake8_args = ['-m', 'flake8']
 " === Ben Orenstein leaders
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-
 " Quickfix management
 map <Space><Space> :ccl<cr>
 
@@ -234,11 +228,25 @@ set backupdir=~/.tmp
 set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
 
 " Use Silver Searcher instead of grep
-set grepprg=ag
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+"set grepprg=ag
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"let g:ctrlp_use_caching = 0
 
 map <Leader>nt :NERDTreeToggle<CR>
 
@@ -250,8 +258,8 @@ vnoremap <silent> -# :s/^#//<cr>:noh<cr>
 nmap <F8> :TagbarToggle<CR>
 
 " YouCompleteMe
-
-nnoremap <Leader>] :YcmCompleter GoTo<CR>
 let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap f :tab split \| YcmCompleter GoToDefinition<CR>
+nnoremap <leader>d :tab split \| YcmCompleter GoToDefinition<CR>
+nnoremap <leader>v :vsplit \| YcmCompleter GoTo<CR>
+nnoremap <leader>s :split \| YcmCompleter GoTo<CR>
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
