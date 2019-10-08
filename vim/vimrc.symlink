@@ -59,9 +59,6 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Gundo
-" map <leader>g :GundoToggle<CR>
-
 " PEP8
 let g:pep8_map='<leader>8'
 
@@ -124,8 +121,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+"map <C-n> :cnext<CR>
+"map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
 "autocmd FileType go nmap <leader>b  <Plug>(go-build)
@@ -242,3 +239,19 @@ set grepprg=ag
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_use_caching = 0
+
+map <Leader>nt :NERDTreeToggle<CR>
+
+" comment/uncomment use # or -#
+vnoremap <silent> # :s/^/#/<cr>:noh<cr>
+vnoremap <silent> -# :s/^#//<cr>:noh<cr>
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" YouCompleteMe
+
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap f :tab split \| YcmCompleter GoToDefinition<CR>
