@@ -259,7 +259,7 @@ nmap <F8> :TagbarToggle<CR>
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
-nnoremap <leader>d :tab split \| YcmCompleter GoToDefinition<CR>
-nnoremap <leader>v :vsplit \| YcmCompleter GoTo<CR>
-nnoremap <leader>s :split \| YcmCompleter GoTo<CR>
-nnoremap <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <leader>gt :tab split \| YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gv :vsplit \| YcmCompleter GoTo<CR>
+nnoremap <leader>gs :split \| YcmCompleter GoTo<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
