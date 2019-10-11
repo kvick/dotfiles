@@ -4,7 +4,7 @@ set nocompatible              " required
 filetype off                  " required
 
 set background=dark
-colorscheme Monokai
+colorscheme gruvbox
 
 set ruler               " show the cursor position
 set hlsearch            " highlight the last searched term
@@ -244,13 +244,12 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 "set grepprg=ag
 
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"let g:ctrlp_use_caching = 0
+" If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
 
 map <Leader>nt :NERDTreeToggle<CR>
 
-" comment/uncomment use # or -#
+" comment/uncomment use # or -# (visual mode)
 vnoremap <silent> # :s/^/#/<cr>:noh<cr>
 vnoremap <silent> -# :s/^#//<cr>:noh<cr>
 
@@ -259,6 +258,7 @@ nmap <F8> :TagbarToggle<CR>
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
 nnoremap <leader>d :tab split \| YcmCompleter GoToDefinition<CR>
 nnoremap <leader>v :vsplit \| YcmCompleter GoTo<CR>
 nnoremap <leader>s :split \| YcmCompleter GoTo<CR>
