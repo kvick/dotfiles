@@ -48,9 +48,6 @@ set clipboard=unnamed
 " tmux help?
 map <Esc>[B <Down>
 
-" TaskList
-" map <leader>td <Plug>TaskList
-
 nnoremap <Tab-Right> gt
 nnoremap <Tab-Left> gT
 
@@ -259,7 +256,7 @@ nmap <F8> :TagbarToggle<CR>
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
-nnoremap <leader>gt :tab split \| YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gv :vsplit \| YcmCompleter GoTo<CR>
-nnoremap <leader>gs :split \| YcmCompleter GoTo<CR>
-nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>T :tab split \| YcmCompleter GoToDefinition<CR>
+nnoremap <leader>V :vsplit \| YcmCompleter GoTo<CR>
+nnoremap <leader>S :split \| YcmCompleter GoTo<CR>
+nnoremap <leader>D :YcmCompleter GoTo<CR>
