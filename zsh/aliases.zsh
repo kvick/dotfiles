@@ -43,6 +43,8 @@ alias bt='ssh aws.test.netflix.net'
 alias bp='ssh aws.prod.netflix.net'
 alias bm='ssh aws.mgmt.netflix.net'
 alias bmt='ssh aws.mgmttest.netflix.net'
+alias bbp='ssh awsbuild.prod.netflix.net'
+alias bbt='ssh awsbuild.test.netflix.net'
 alias delart="curl -vvv -uartipipe:artipipe -X DELETE https://artifacts-unstable.mgmt.netflix.net/$1"
 
 # spotify
