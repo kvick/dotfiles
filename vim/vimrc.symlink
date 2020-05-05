@@ -209,6 +209,7 @@ let g:syntastic_python_pylint_exec = '/usr/local/bin/pylint'
 let g:syntastic_python_pylint_args = ['--help-msg', 'pylint']
 let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8']
+let g:syntastic_ruby_checkers = []
 
 " === Ben Orenstein leaders
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
@@ -253,3 +254,7 @@ nnoremap <leader>T :tab split \| YcmCompleter GoToDefinition<CR>
 nnoremap <leader>V :vsplit \| YcmCompleter GoTo<CR>
 nnoremap <leader>S :split \| YcmCompleter GoTo<CR>
 nnoremap <leader>D :YcmCompleter GoTo<CR>
+
+" IdeaVim
+" copy to system clipboard
+" vnoremap y "*y
