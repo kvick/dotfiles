@@ -85,22 +85,9 @@ setw -g window-status-current-format "|#I:#W|"
 # default statusbar colors
 set-option -g status-fg white
 set-option -g status-bg default
-set-option -g status-attr default
+#set-option -g status-attr default
 
-# default window title colors
-set-window-option -g window-status-fg cyan
-set-window-option -g window-status-bg default
-set-window-option -g window-status-attr dim
-
-# active window title colors
-set-window-option -g window-status-current-fg white
-set-window-option -g window-status-current-bg default
-set-window-option -g window-status-current-attr bright
-
-# command/message line colors
-set-option -g message-fg white
-set-option -g message-bg black
-set-option -g message-attr bright
+setw -g window-status-current-style fg=black,bg=white
 
 # Automatically set window title
 set-window-option -g automatic-rename off
@@ -117,21 +104,25 @@ bind L resize-pane -R 5
 set -g history-limit 32768
 
 bind-key P command-prompt -p 'save history to filename:' -I '~/tmux.history' 'capture-pane -S -32768 ; save-buffer %1 ; delete-buffer'
-#
+
 set-window-option -g xterm-keys on
 
 set-option -g default-command "/usr/local/bin/reattach-to-user-namespace -l zsh"
 
 # List of plugins
+
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'Morantron/tmux-fingers'
-set -g @plugin 'robhurring/tmux-spotify'
 
-run-shell ~/.tmux/plugins/tmux-spotify/spotify.tmux
+# allows for selecting for copy/paste
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+#set -g @plugin 'robhurring/tmux-spotify'
+#run-shell ~/.tmux/plugins/tmux-spotify/spotify.tmux
+
 run '~/.tmux/plugins/tpm/tpm'
-
+ 
 # custom key bindings
 bind -n F6 setw synchronize-panes
 
