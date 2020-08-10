@@ -3,6 +3,7 @@ export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects/stash
+export WORKSPACE=/tmp/data
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -54,3 +55,7 @@ bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# 2020-05 - using split tunnel
+export NEWT_SKIP_VPNCHECK=1

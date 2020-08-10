@@ -46,6 +46,9 @@ set visualbell
 
 set clipboard=unnamed
 
+" indent
+let g:indentLine_char = '⦙'
+
 " tmux help?
 map <Esc>[B <Down>
 
@@ -122,6 +125,9 @@ nnoremap <leader>a :cclose<CR>
 " Dash documentation and snippet tool
 :nmap <silent> <leader>d <Plug>DashSearch
 let g:dash_activate = 1
+
+" yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Gdiff
 set diffopt+=vertical
