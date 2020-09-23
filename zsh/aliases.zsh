@@ -33,6 +33,16 @@ alias artsn="./art.py --verbose search -r npm-local -s 'artifacts.netflix.com' $
 alias goau='ssh %artifactory,us-west-2,awsmanagementtest,unstable-v,0'
 alias goaup='ssh %artifactory,us-west-2,awsmanagementtest,unstable-primary-v,0'
 
+# go artifactory unstable build_test (first instance)
+alias goaubt='ssh %artifactory,us-west-2,build_test,unstable-v,0'
+# go artifactory unstable primary build_test
+alias goaupbt='ssh %artifactory,us-west-2,build_test,unstable-primary-v,0'
+
+# go artifactory staging build_test (first instance)
+alias goasbt='ssh %artifactory,us-west-2,build_test,unstable-v,0'
+# go artifactory staging primary build_test
+alias goaspbt='ssh %artifactory,us-west-2,build_test,unstable-primary-v,0'
+
 # Stable
 alias goap='ssh %artifactory,us-west-2,awsmanagement,-stable,primary'
 alias goam='ssh %artifactory,us-west-2,awsmanagement,metrics-stable,0'
@@ -64,6 +74,10 @@ alias rsync='noglob /usr/local/bin/rsync'
 alias venv='source venv/bin/activate'
 
 alias shrug='echo "¯\_(ツ)_/¯" | pbcopy'
+
+function goa {
+  ssh %artifactory,artifacts,awsmanagement,us-west-2,stable-v,${1:-0}
+}
 
 function gojm {
   ssh -t awstest oq-ssh -r us-west-1 jenkins-${1:-opseng}-v,0

@@ -1,0 +1,20 @@
+{
+    "vim.disableAnnoyingNeovimMessage": true,
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "explorer.confirmDelete": false,
+    "go.useLanguageServer": true,
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 14,
+    "editor.columnSelection": false
+}

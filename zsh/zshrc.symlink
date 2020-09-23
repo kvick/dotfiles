@@ -56,6 +56,22 @@ bindkey '^E' end-of-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
 # 2020-05 - using split tunnel
 export NEWT_SKIP_VPNCHECK=1
+
+# For compilers to find zlib you may need to set:
+export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
+
+# # For pkg-config to find zlib you may need to set:
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
+
+# pyenv
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/kvick/.sdkman"
+[[ -s "/Users/kvick/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kvick/.sdkman/bin/sdkman-init.sh"
