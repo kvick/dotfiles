@@ -75,3 +75,6 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/kvick/.sdkman"
 [[ -s "/Users/kvick/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kvick/.sdkman/bin/sdkman-init.sh"
+
+# 2020-12 local artifactory on docker
+export JFROG_HOME="/Users/kvick/Projects/investigation/artifactory-docker"

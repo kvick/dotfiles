@@ -34,7 +34,8 @@ alias goau='ssh %artifactory,us-west-2,awsmanagementtest,unstable-v,0'
 alias goaup='ssh %artifactory,us-west-2,awsmanagementtest,unstable-primary-v,0'
 
 # go artifactory unstable build_test (first instance)
-alias goaubt='ssh %artifactory,us-west-2,build_test,unstable-v,0'
+alias goaubt='ssh %artifactory,us-west-2,build_test,artifactory-artifacts-unstable-v,0'
+
 # go artifactory unstable primary build_test
 alias goaupbt='ssh %artifactory,us-west-2,build_test,unstable-primary-v,0'
 
@@ -112,3 +113,7 @@ alias gocalc='ssh 192.168.1.54'
 # howdoi
 alias h='function hdi(){ /Users/kvick/GoogleDrive/Projects/github/howdoi/venv/bin/howdoi $* -c -n 3; }; hdi'
 
+mcurl () 
+{
+    curl -k -s --cert ~/.metatron/user.crt --key ~/.metatron/user.key --cacert ~/.metatron/metatronClient.trust.pem -H "content-type: application/json" -H"accept: application/json" "$@"
+}

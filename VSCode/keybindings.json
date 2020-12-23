@@ -44,7 +44,7 @@
     {
         "key": "ctrl+l",
         "command": "workbench.action.nextEditor",
-         "when": "!terminalFocus"
+        "when": "!terminalFocus"
     },
     {
         "key": "alt+t",
@@ -105,4 +105,45 @@
         "key": "cmd+t",
         "command": "-workbench.action.showAllSymbols"
     },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+d",
+        "command": "-extension.vim_cmd+d",
+        "when": "editorTextFocus && vim.active && vim.use<D-d> && !inDebugRepl"
+    },
+    {
+        "key": "cmd+d",
+        "command": "-editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+    },
+    // open dash, the global shift+cmd+d will close dash
+    {
+        "key": "cmd+d",
+        "command": "extension.dash.specific",
+        "when": "editorTextFocus && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+right",
+        "command": "workbench.action.focusNextGroup",
+        "when": "!terminalFocus"
+    }
 ]

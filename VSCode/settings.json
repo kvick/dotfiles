@@ -15,6 +15,13 @@
     "explorer.confirmDelete": false,
     "go.useLanguageServer": true,
     "editor.minimap.enabled": false,
-    "editor.fontSize": 14,
-    "editor.columnSelection": false
+    "editor.columnSelection": false,
+    "files.autoSave": "onFocusChange",
+    "python.venvPath": "${workspaceFolder}/venv",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "git.autofetch": true,
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "window.zoomLevel": 1
 }
